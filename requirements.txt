@@ -9,3 +9,4 @@ toolz==0.9.0
 cloudpickle==1.2.1
 dask==2.0.0
 fitbit==0.3.1
+cherrypy-18.3.0
