@@ -7,5 +7,4 @@ install-env:
 	conda activate fitbit && python -m ipykernel install --user --name fitbit --display-name "fitbit"
 
 uninstall-env:
-	conda deactivate
 	conda remove --name fitbit --all
