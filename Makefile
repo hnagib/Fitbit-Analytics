@@ -2,9 +2,10 @@ SHELL=/bin/bash
 
 install-env:
 	conda create -n fitbit python=3.7
-	source activate fitbit && pip install -r requirements.txt
-	source activate fitbit && conda install ipykernel
-	source activate fitbit && python -m ipykernel install --user --name fitbit --display-name "fitbit"
+	conda activate fitbit && pip install -r requirements.txt
+	conda activate fitbit && conda install ipykernel
+	conda activate fitbit && python -m ipykernel install --user --name fitbit --display-name "fitbit"
 
 uninstall-env:
+	conda deactivate
 	conda remove --name fitbit --all
