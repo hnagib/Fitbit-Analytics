@@ -2,10 +2,11 @@
 
 Exploring Fitbit API using this wonderful [package](https://pypi.org/project/fitbit/) by Issac Kelly and ORCAS for customized analytics.
 
-### :bulb: Potential Projects:
+:bulb: Potential Projects:
+--------------------------------
 - Sleep contest
 - Monitoring HR immediately after waking to detect over training
-- ... 
+
 
 :open_file_folder: Repo Organization
 --------------------------------
