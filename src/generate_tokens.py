@@ -102,13 +102,13 @@ if __name__ == '__main__':
         if key == 'access_token':
             
             print(f'Saving access token in {access_token_path}')
-            with open(access_token_path, 'a') as access_token_file:
+            with open(access_token_path, 'r') as access_token_file:
                 access_token_file.write(value)
                 
         elif key == 'refresh_token':
           
             print(f'Saving refresh token in {refresh_token_path}')
-            with open(refresh_token_path, 'a') as refresh_token_file:
+            with open(refresh_token_path, 'r') as refresh_token_file:
                 refresh_token_file.write(value)
         
         else:
