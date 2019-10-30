@@ -2,7 +2,7 @@
 
 Exploring Fitbit API using this wonderful [package](https://pypi.org/project/fitbit/) by Issac Kelly and ORCAS for customized analytics.
 
-:bulb: Potential Projects:
+:bulb: Potential Projects
 --------------------------------
 - Sleep quality improvement change point detection
 - Custom sleep contest (most hours, deep sleep, efficiency etc.)
