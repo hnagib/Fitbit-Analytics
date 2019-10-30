@@ -4,7 +4,8 @@ Exploring Fitbit API using this wonderful [package](https://pypi.org/project/fit
 
 :bulb: Potential Projects:
 --------------------------------
-- Sleep contest
+- Sleep quality improvement change point detection
+- Custom sleep contest (most hours, deep sleep, efficiency etc.)
 - Monitoring HR immediately after waking to detect over training
 
 
