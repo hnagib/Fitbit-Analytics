@@ -51,7 +51,9 @@ def sleep_summary_plot(sleep_dict):
     show(p)
     
     
-def plot_ts(df_plot, ys, 
+def plot_ts(df_plot, 
+            ys, 
+            hover_vars=None,
             date_col='dateOfSleep', 
             styles=['-o'],
             palette=['#154ba6', '#3f8dff', '#7ec4ff', '#e73360'],
@@ -98,7 +100,11 @@ def plot_ts(df_plot, ys,
     p.add_layout(legend)
     p.legend.click_policy = 'hide'
     
-    hovers = [(y, f'@{y}') for y in ys] + [['Date', 'date']]
+    hovers = [(y, f'@{y}') for y in ys] + [['Date', '@date']]
+    
+    if hover_vars is not None:
+        hovers += [[h, f'@{h}'] for h in hover_vars]
+        
     p.add_tools(HoverTool(tooltips=hovers))
 
     show(p)
