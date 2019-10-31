@@ -98,7 +98,7 @@ def plot_ts(df_plot, ys,
     p.add_layout(legend)
     p.legend.click_policy = 'hide'
     
-    hovers = [(y, f'@{y}') for y in ys] + [['Date', 'date']]
+    hovers = [(y, f'@{y}') for y in ys] + [['Date', '@date']]
     p.add_tools(HoverTool(tooltips=hovers))
 
     show(p)
