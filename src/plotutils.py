@@ -99,6 +99,7 @@ def plot_ts(df_plot,
     legend = Legend(items=[(var, plots) for var, plots in plot_dict.items()])
     p.add_layout(legend)
     p.legend.click_policy = 'hide'
+    p.legend.location = 'top_left'
     
     hovers = [(y, f'@{y}') for y in ys] + [['Date', '@date']]
     
