@@ -7,6 +7,7 @@ Exploring Fitbit API using this wonderful [package](https://pypi.org/project/fit
 - Sleep quality improvement change point detection
 - Custom sleep contest (most hours, deep sleep, efficiency etc.)
 - Monitoring HR immediately after waking to detect over training
+- Custom food & nutrition report (e.g. to show % of vegan vs. animal products, % of processed vs. whole foods)
 
 
 :open_file_folder: Repo Organization
