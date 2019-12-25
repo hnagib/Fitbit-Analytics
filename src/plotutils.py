@@ -1,11 +1,53 @@
 from bokeh.io import show, output_notebook
 from bokeh.models import ColumnDataSource, HoverTool, Legend
-from bokeh.palettes import Spectral6, Dark2
+from bokeh.palettes import Spectral6, Dark2, inferno
 from bokeh.plotting import figure
 from bokeh.transform import factor_cmap
 import datetime
 import itertools
+import math
 
+def top_food_plot(df_top_foods):
+
+    foods = [i for i in df_top_foods.index]
+    source = ColumnDataSource(data={
+        'foods':foods,
+        'calories':df_top_foods['calories'],
+        'percentage':df_top_foods['% of total calories']
+    })
+
+
+    p = figure(
+        x_range=foods, 
+        plot_height=600,
+        plot_width=850,
+        title="Foods logged 2019-11-24 to 2019-12-24",
+        y_axis_label='% of total calories'
+    )
+
+    p.vbar(
+        x='foods', 
+        top='percentage', 
+        width=0.9, 
+        source=source, 
+        line_color='white', 
+        fill_color=factor_cmap(
+            'foods', 
+            palette=inferno(df_top_foods.shape[0]), 
+            factors=foods)
+    )
+
+    p.xgrid.grid_line_color = None
+    p.legend.orientation = "horizontal"
+    p.add_tools(HoverTool(
+        tooltips=[
+            ("Food", "@foods"),
+            ("Total cals", "@percentage %")
+        ]
+    ))
+    p.xaxis.major_label_orientation = math.pi/2
+    show(p)
+    
 
 def sleep_summary_plot(sleep_dict):
 
