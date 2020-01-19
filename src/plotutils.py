@@ -123,7 +123,7 @@ def plot_ts(df_plot,
         
         if "-" in style:
             plot_dict[y].append(p.line(
-                x='dateOfSleep',
+                x=date_col,
                 y=y, 
                 color=color, 
                 source=cds
@@ -131,7 +131,7 @@ def plot_ts(df_plot,
             
         if ("o" in style) or ("*" in style):
             plot_dict[y].append(p.circle(
-                x='dateOfSleep',
+                x=date_col,
                 y=y, 
                 color=color,
                 alpha=0.5,
