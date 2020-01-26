@@ -3,6 +3,7 @@ from bokeh.models import ColumnDataSource, HoverTool, Legend
 from bokeh.palettes import Spectral6, Dark2, inferno
 from bokeh.plotting import figure
 from bokeh.transform import factor_cmap
+from bokeh.models import Range1d
 import datetime
 import itertools
 import math
@@ -99,9 +100,14 @@ def plot_ts(df_plot,
             date_col='dateOfSleep', 
             styles=['-o'],
             palette=['#154ba6', '#3f8dff', '#7ec4ff', '#e73360'],
+            bar_width=[24*60*60*5000],
             title=None,
             plot_height=400,
-            plot_width=1000
+            plot_width=1000,
+            ylabel=None,
+            xlabel=None,
+            legend_location='bottom_left',
+            legend_orientation='horizontal'
            ):
     
     df_plot = df_plot.reset_index().copy()
@@ -118,10 +124,19 @@ def plot_ts(df_plot,
     
     plot_dict = {}
     
-    for y, color, style in zip(ys, itertools.cycle(palette), itertools.cycle(styles)):
+    for y, color, style, width in zip(ys, itertools.cycle(palette), itertools.cycle(styles), itertools.cycle(bar_width)):
         plot_dict[y] = []
         
-        if "-" in style:
+        if style == "--":
+            plot_dict[y].append(p.line(
+                x=date_col,
+                y=y,
+                line_dash="4 4",
+                color=color, 
+                source=cds
+            ))    
+            
+        if ('-' in style) and (style != '--'):
             plot_dict[y].append(p.line(
                 x=date_col,
                 y=y, 
@@ -137,11 +152,24 @@ def plot_ts(df_plot,
                 alpha=0.5,
                 source=cds
             ))
+            
+        if ("|" in style):
+            plot_dict[y].append(p.vbar(
+                x=date_col,
+                top=y,
+                fill_color=color,
+                width=width,
+                alpha=0.5,
+                source=cds
+            ))
+            
+        #p.add_tools(HoverTool(renderers=[plot_dict[y]], mode='hline'))
     
     legend = Legend(items=[(var, plots) for var, plots in plot_dict.items()])
     p.add_layout(legend)
     p.legend.click_policy = 'hide'
-    p.legend.location = 'top_left'
+    p.legend.location = legend_location
+    p.legend.orientation = legend_orientation
     
     hovers = [(y, f'@{y}') for y in ys] + [['Date', '@date']]
     
@@ -149,5 +177,7 @@ def plot_ts(df_plot,
         hovers += [[h, f'@{h}'] for h in hover_vars]
         
     p.add_tools(HoverTool(tooltips=hovers))
-
-    show(p)
+    
+    p.yaxis.axis_label = ylabel
+    p.xaxis.axis_label = xlabel
+    return p

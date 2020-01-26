@@ -36,18 +36,18 @@ def get_sleep_data(auth_client, start, end):
     :return: pandas dataframe with sleep data
     """
     # Pull sleep data for each split
-    sleep = []
+    sleep_raw = []
     for endpoint in split_date_range(start, end):
-        sleep += auth_client.time_series(
+        sleep_raw += auth_client.time_series(
             resource='sleep', base_date=endpoint[0], end_date=endpoint[-1]
         )['sleep']
 
     # Parse sleep data range API output 
-    sleep_data = [{item:s[item] for item in sleep[0].keys()} for s in sleep]
+    sleep_parsed = [{item:s[item] for item in sleep_raw[0].keys()} for s in sleep_raw]
     
     # Create dataframe 
-    df = pd.DataFrame(sleep_data)
+    df = pd.DataFrame(sleep_parsed)
     df['dateOfSleep'] = pd.to_datetime(df['dateOfSleep'])
     df = df.sort_values('dateOfSleep').reset_index(drop=True)
     
-    return df
+    return df, sleep_raw, sleep_parsed
