@@ -106,6 +106,7 @@ def plot_ts(df_plot,
             plot_width=1000,
             ylabel=None,
             xlabel=None,
+            x_range=None,
             legend_location='bottom_left',
             legend_orientation='horizontal'
            ):
@@ -119,6 +120,7 @@ def plot_ts(df_plot,
         x_axis_type="datetime",
         plot_height=plot_height,
         plot_width=plot_width,
+        x_range=x_range,
         title=title,
     )
     
