@@ -8,7 +8,7 @@ import datetime
 import itertools
 import math
 
-def top_food_plot(df_top_foods):
+def top_food_plot(df_top_foods, title=''):
 
     foods = [i for i in df_top_foods.index]
     source = ColumnDataSource(data={
@@ -22,7 +22,7 @@ def top_food_plot(df_top_foods):
         x_range=foods, 
         plot_height=600,
         plot_width=850,
-        title="Foods logged 2019-11-24 to 2019-12-24",
+        title=title,
         y_axis_label='% of total calories'
     )
 
